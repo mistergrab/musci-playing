@@ -1,0 +1,37 @@
+{
+  "id": "3140640",
+  "name": "music-play",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "688097",
+      "name": "上一首 上一个",
+      "font_class": "left",
+      "unicode": "e78a",
+      "unicode_decimal": 59274
+    },
+    {
+      "icon_id": "688128",
+      "name": "下一个 下一首",
+      "font_class": "right",
+      "unicode": "e7a5",
+      "unicode_decimal": 59301
+    },
+    {
+      "icon_id": "2733965",
+      "name": "开始",
+      "font_class": "star",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "4297358",
+      "name": "暂停",
+      "font_class": "stop",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+/*css reset*/
+
+body {
+    position: relative;
+    margin: 0;
+}
+
+.cover {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border: 1px solid black;
+    background: url(https://img11.360buyimg.com/n12/jfs/t1/214464/34/10802/118906/61defc44E52b8c79e/dcf0073a10e81a1c.jpg) center center no-repeat;
+    background-size: cover;
+    filter: blur(10px);
+    transform: scale(1.2)
+}
+
+.player {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px 40px;
+    border-radius: 10px;
+    color: #d300fd;
+    background: rgb(238, 255, 0);
+}
+
+.player .main {
+    display: flex;
+}
+
+.player .buttons {
+    margin-top: 10px;
+}
+
+.player .buttons .iconfont {
+    font-size: 35px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.player .buttons .iconfont:hover {
+    opacity: 0.7;
+}
+
+.player .texts {
+    margin-left: 20px;
+}
+
+.player .texts h3 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.player .texts p {
+    margin-top: 0px;
+}
+
+.player .bar {
+    height: 3px;
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.player .bar .progress {
+    height: 100%;
+    width: 50%;
+    border-radius: 3px;
+    background: currentColor;
+}
+
+.player .time {
+    text-align: right;
+    margin-top: 8px;
+}
