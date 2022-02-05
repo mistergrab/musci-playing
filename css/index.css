@@ -71,9 +71,10 @@ body {
 
 .player .bar .progress {
     height: 100%;
-    width: 50%;
+    width: 0%;
     border-radius: 3px;
     background: currentColor;
+    transition: width, 1S;
 }
 
 .player .time {

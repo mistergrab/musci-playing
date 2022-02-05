@@ -1,36 +1,11 @@
 console.log('hello')
-let musicList = [{
-        "src": "http://jirengu_1.gitee.io/music/ifyou.mp3",
-        "title": "IF YOU",
-        "auther": "Big Bang",
-        "img": "http://jirengu_1.gitee.io/music/if-you.png"
-    },
-    {
-        "src": "http://jirengu_1.gitee.io/music/夏日示爱-郭彩洁-暖手心.m4a",
-        "title": "暖手心",
-        "auther": "郭彩洁",
-        "img": "http://jirengu_1.gitee.io/music/夏日示爱-郭彩洁-暖手心.jpg"
-    },
-    {
-        "src": "http://jirengu_1.gitee.io/music/玫瑰.mp3",
-        "title": "玫瑰",
-        "auther": "贰佰",
-        "img": "http://jirengu_1.gitee.io/music/玫瑰.jpeg"
-    },
-    {
-        "src": "http://jirengu_1.gitee.io/music/成全-林宥嘉-成全.m4a",
-        "title": "成全",
-        "auther": "林宥嘉",
-        "img": "http://jirengu_1.gitee.io/music/成全-林宥嘉-成全.jpg"
-    },
-    {
-        "src": "http://jirengu_1.gitee.io/music/飞行器的执行周期-郭顶-水星记.m4a",
-        "title": "水星记",
-        "auther": "郭顶",
-        "img": "http://jirengu_1.gitee.io/music/飞行器的执行周期-郭顶-水星记.jpg"
-    }
-]
+let musicList =
+    fetch('/data.json').then(res => res.json()).then(ret => {
+        console.log(ret)
+        musicList = ret
+        setMusic()
 
+    })
 
 const $ = selector => document.querySelector(selector)
 
@@ -41,10 +16,11 @@ const $Stop = $('.player .icon-stop')
 const $title = $('.player .texts h3')
 const $auther = $('.player .texts p')
 const $time = $('.player .time')
+const $progress = $('.player .progress')
 
 let index = 0
+let clock = null
 let audioObject = new Audio()
-setMusic()
 
 function setMusic() {
     let curMusic = musicList[index]
@@ -56,6 +32,15 @@ function setMusic() {
 $Stop.onclick = function() {
     audioObject.pause()
 }
+
+function secondToText(second) {
+    second = parseInt(second)
+    let min = parseInt(second / 60)
+    let sec = second % 60
+    sec = (sec + '').length == 1 ? '0' + sec : sec
+    return min + ':' + sec
+}
+
 $playingBtn.onclick = function() {
     if (this.classList.contains('icon-star')) {
         this.classList.remove('icon-star')
@@ -63,10 +48,19 @@ $playingBtn.onclick = function() {
         audioObject.play()
         console.log(audioObject.duration)
         console.log(audioObject.currentTime)
+        clock = setInterval(function() {
+            let curTime = audioObject.currentTime
+            let totalTime = audioObject.duration
+            let percent = curTime / totalTime
+            $progress.style.width = percent * 100 + '%'
+            $time.innerText = secondToText(curTime) + '/' + secondToText(totalTime)
+        }, 1000)
+
     } else {
         this.classList.remove('icon-stop')
         this.classList.add('icon-star')
         audioObject.pause()
+        clearInterval(clock)
     }
 }
 
